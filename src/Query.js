@@ -3,7 +3,7 @@ const githubQuery = {
       {
         viewer {
           name
-          repositories(first:10) {
+          repositories(first:20) {
             nodes {
                 name
                 id
@@ -22,13 +22,14 @@ const githubSearchQuery = {
         viewer {
           name
         }
-        search(query: "user:Todd-Gardner sort:updated-desc", type: REPOSITORY, first: 10) {
+        search(query: "user:Todd-Gardner sort:updated-desc", type: REPOSITORY, first: 20) {
           nodes {
             ... on Repository {
               name
               id
               description
               url
+              viewerSubscription
             }
           }
         }
