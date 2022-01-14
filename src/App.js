@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import RepoInfo from "./components/RepoInfo";
 import github from "./db";
 import query from "./Query";
 
@@ -34,12 +35,7 @@ function App() {
       {repoList && (
         <ul className="list-group list-group-flush">
           {repoList.map((repo) => (
-            <li className="list-group-item" key={repo.id.toString()}>
-              <a className="h5 mb-0 text-decoration-none" href={repo.url}>
-                {repo.name}
-              </a>
-              <p className="small">Description: {repo.description}</p>
-            </li>
+            <RepoInfo repo={repo} key={repo.id.toString()} />
           ))}
         </ul>
       )}
