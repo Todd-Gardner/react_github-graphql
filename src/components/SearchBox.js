@@ -1,7 +1,7 @@
 const SearchBox = ({
   searchString,
-  pageCount, // to resultCount
-  totalCount, // to totalResults
+  resultCount, // to resultCount
+  totalResults, // to totalResults
   onTotalChange,
   onQueryChange,
 }) => {
@@ -19,23 +19,23 @@ const SearchBox = ({
         />
       </div>
       <div className="d-flex align-items-center">
-        <label htmlFor="pageCount" className="me-2 text-secondary fw-bold">
+        <label htmlFor="resultCount" className="me-2 text-secondary fw-bold">
           Show
         </label>
         <input
           className="form-control form-control-sm me-2 text-center"
-          id="pageCount"
+          id="resultCount"
           // "" below ?
           type="number"
           min={1}
           max={100}
-          value={pageCount}
+          value={resultCount}
           onChange={(e) => onTotalChange(e.target.value)}
         />
       </div>
       <div>
         <b className="text-secondary me-2">Total:</b>
-        {totalCount}
+        {totalResults}
       </div>
     </div>
   );

@@ -15,27 +15,40 @@ const githubQuery = {
       }
     `,
 };
-const githubSearchQuery = (queryString, pageCount) => {
-    // change to resultCount
+const githubSearchQuery = (
+  searchString,
+  resultCount,
+  paginationKeyword,
+  paginationString
+) => {
   return {
     query: `
       {
         viewer {
           name
         }
-        search(query: "${queryString} user:Todd-Gardner sort:updated-desc", type: REPOSITORY, first: ${pageCount}) {
+        search(query: "${searchString} user:Todd-Gardner sort:updated-desc", type: REPOSITORY, ${paginationKeyword}: ${resultCount}, ${paginationString}) {
           repositoryCount
-          nodes {
-            ... on Repository {
-              name
-              id
-              description
-              url
-              viewerSubscription
-              licenseInfo {
-                  spdxId
+          edges {
+            cursor
+            node {
+              ... on Repository {
+                name
+                id
+                description
+                url
+                viewerSubscription
+                licenseInfo {
+                    spdxId
+                }
               }
             }
+          }
+          pageInfo {
+            startCursor
+            endCursor
+            hasNextPage
+            hasPreviousPage
           }
         }
       }
