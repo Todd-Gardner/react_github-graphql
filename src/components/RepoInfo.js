@@ -1,7 +1,7 @@
 const RepoInfo = ({ repo }) => {
   const license = repo.licenseInfo?.spdxId;
-  const licenseSpan = license && (
-    // 4.4 or use switch case - but would be repeating code
+  // 4.4 or use switch case - but would be repeating code
+  const licenseSpan = (
     <span
       className={
         "px-1 py-1 ms-1 d-inline-block btn btn-sm " +
@@ -23,7 +23,7 @@ const RepoInfo = ({ repo }) => {
           <p className="small">Description: {repo.description}</p>
         </div>
         <div className="text-nowrap ms-3">
-          {licenseSpan}
+          {license && licenseSpan}
           <span
             className={
               "px-1 py-1 ms-1 d-inline-block btn btn-sm " +

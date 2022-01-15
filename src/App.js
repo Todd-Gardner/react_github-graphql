@@ -1,15 +1,16 @@
 import { useEffect, useState } from "react";
 import RepoInfo from "./components/RepoInfo";
+import SearchBox from "./components/SearchBox";
 import github from "./db";
 import { githubQuery, githubSearchQuery as searchQuery } from "./Query";
 
 function App() {
   // better to just save as user {} in one state ?
   const [userName, setUserName] = useState("");
-  const [repoList, setRepoList] = useState([]); //null
-  const [searchString, setSearchString] = useState("react");
-  const [pageCount, setPageCount] = useState(20);
-  const [totalCount, setTotalCount] = useState(0);
+  const [repoList, setRepoList] = useState([]);
+  const [searchString, setSearchString] = useState("");
+  const [pageCount, setPageCount] = useState(10); //change to resultCount
+  const [totalCount, setTotalCount] = useState(0); //change to totalResults
 
   useEffect(() => {
     fetch(github.baseURL, {
@@ -37,10 +38,13 @@ function App() {
         Repos
       </h1>
       <p>Welcome {userName}</p>
-      <p>
-        <b>Searching for:</b> {searchString} | <b>Items per page:</b>{" "}
-        {pageCount} | <b>Total results:</b> {totalCount}
-      </p>
+      <SearchBox
+        searchString={searchString}
+        pageCount={pageCount}
+        totalCount={totalCount}
+        onQueryChange={(searchString) => setSearchString(searchString)}
+        onTotalChange={(total) => setPageCount(total)}
+      />
       {repoList && (
         <ul className="list-group list-group-flush">
           {repoList.map((repo) => (

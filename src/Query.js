@@ -16,6 +16,7 @@ const githubQuery = {
     `,
 };
 const githubSearchQuery = (queryString, pageCount) => {
+    // change to resultCount
   return {
     query: `
       {
