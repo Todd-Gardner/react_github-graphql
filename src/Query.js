@@ -30,6 +30,9 @@ const githubSearchQuery = {
               description
               url
               viewerSubscription
+              licenseInfo {
+                  spdxId
+              }
             }
           }
         }

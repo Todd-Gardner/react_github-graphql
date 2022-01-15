@@ -1,4 +1,18 @@
 const RepoInfo = ({ repo }) => {
+  const license = repo.licenseInfo?.spdxId;
+  const licenseSpan = license && (
+    // 4.4 or use switch case - but would be repeating code
+    <span
+      className={
+        "px-1 py-1 ms-1 d-inline-block btn btn-sm " +
+        (license === "NOASSERTION" ? "btn-warning" : "btn-outline-success")
+      }
+      style={{ fontSize: ".6em" }}
+    >
+      {license}
+    </span>
+  );
+
   return (
     <li className="list-group-item">
       <div className="d-flex justify-content-between align-items-center">
@@ -8,17 +22,20 @@ const RepoInfo = ({ repo }) => {
           </a>
           <p className="small">Description: {repo.description}</p>
         </div>
-        <span
-          className={
-            "px-0 py-1 ms-1 d-inline-block btn btn-sm " +
-            (repo.viewerSubscription === "SUBSCRIBED"
-              ? "btn-success"
-              : "btn-outline-secondary")
-          }
-          style={{ fontSize: ".6em" }}
-        >
-          {repo.viewerSubscription}
-        </span>
+        <div className="text-nowrap ms-3">
+          {licenseSpan}
+          <span
+            className={
+              "px-1 py-1 ms-1 d-inline-block btn btn-sm " +
+              (repo.viewerSubscription === "SUBSCRIBED"
+                ? "btn-success"
+                : "btn-outline-secondary")
+            }
+            style={{ fontSize: ".6em" }}
+          >
+            {repo.viewerSubscription}
+          </span>
+        </div>
       </div>
     </li>
   );
