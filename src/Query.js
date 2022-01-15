@@ -15,14 +15,15 @@ const githubQuery = {
       }
     `,
 };
-const githubSearchQuery = {
-  //can add search terms before user ie movie
-  query: `
+const githubSearchQuery = (queryString, pageCount) => {
+  return {
+    query: `
       {
         viewer {
           name
         }
-        search(query: "user:Todd-Gardner sort:updated-desc", type: REPOSITORY, first: 20) {
+        search(query: "${queryString} user:Todd-Gardner sort:updated-desc", type: REPOSITORY, first: ${pageCount}) {
+          repositoryCount
           nodes {
             ... on Repository {
               name
@@ -38,6 +39,7 @@ const githubSearchQuery = {
         }
       }
     `,
+  };
 };
 
 export { githubQuery, githubSearchQuery };
