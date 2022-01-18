@@ -7,7 +7,7 @@ const RepoInfo = ({ repo }) => {
         "px-1 py-1 ms-1 d-inline-block btn btn-sm " +
         (license === "NOASSERTION" ? "btn-warning" : "btn-outline-success")
       }
-      style={{ fontSize: ".6em" }}
+      style={{ fontSize: ".6em", pointerEvents: "none" }}
     >
       {license}
     </span>
@@ -31,7 +31,7 @@ const RepoInfo = ({ repo }) => {
                 ? "btn-success"
                 : "btn-outline-secondary")
             }
-            style={{ fontSize: ".6em" }}
+            style={{ fontSize: ".6em", pointerEvents: "none" }}
           >
             {repo.viewerSubscription}
           </span>

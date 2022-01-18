@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import PageNavigation from "./components/PageNavigation";
 import RepoInfo from "./components/RepoInfo";
 import SearchBox from "./components/SearchBox";
 import github from "./db";
@@ -9,10 +10,11 @@ import { githubQuery, githubSearchQuery as searchQuery } from "./Query";
 
 function App() {
   // better to just save as user {} in one state ?
+  const [data, setData] = useState();
   const [userName, setUserName] = useState("");
   const [repoList, setRepoList] = useState([]);
   const [searchString, setSearchString] = useState("");
-  const [resultCount, setResultCount] = useState(10);
+  const [resultCount, setResultCount] = useState(5);
   const [totalResults, setTotalResults] = useState(0);
 
   const [startCursor, setStartCursor] = useState(null);
@@ -37,7 +39,7 @@ function App() {
     })
       .then((response) => response.json())
       .then((data) => {
-        //console.log(data);
+        //const data = data;
         const viewer = data.data.viewer;
         const repositories = data.data.search.edges;
         const total = data.data.search.repositoryCount;
@@ -46,6 +48,7 @@ function App() {
         const prev = data.data.search.pageInfo?.hasPreviousPage;
         const next = data.data.search.pageInfo?.hasNextPage;
 
+        setData(data.data);
         setUserName(viewer.name);
         setRepoList(repositories);
         setTotalResults(total);
@@ -53,7 +56,7 @@ function App() {
         setEndCursor(end);
         setHasPreviousPage(prev);
         setHasNextPage(next);
-      })
+      }) // add sort ?
       .catch((err) => console.error(err));
   }, [resultCount, searchString, paginationKeyword, paginationString]);
 
@@ -61,15 +64,47 @@ function App() {
     <div className="App container mt-5">
       <h1 className="text-primary">
         <i className="bi bi-diagram-2-fill" />
-        Repos
+        My Repos
       </h1>
-      <p>Welcome {userName}</p>
+      <p>Welcome, {userName}</p>
+      <div className="card" style={{ backgroundColor: "#e9ecef" }}>
+        <div className="row no-gutters">
+          <div className="col-sm-3">
+            <img
+              className="card-img"
+              src={data?.viewer.avatarUrl}
+              alt="Profile"
+              style={{ maxHeight: "200px" }}
+            />
+          </div>
+          <div className="col-sm-9">
+            <div className="card-body">
+              <h4 className="card-title">{data?.viewer.name}</h4>
+              <p className="small font-weight-light">@{data?.viewer.login}</p>
+              <p className="small card-text">{data?.viewer.bio}</p>
+              <a href={data?.viewer.url} className="btn btn-sm btn-primary">
+                See Profile
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
       <SearchBox
         searchString={searchString}
         resultCount={resultCount}
         totalResults={totalResults}
         onQueryChange={(searchString) => setSearchString(searchString)}
         onTotalChange={(total) => setResultCount(total)}
+      />
+      <PageNavigation
+        start={startCursor}
+        end={endCursor}
+        previous={hasPreviousPage}
+        next={hasNextPage}
+        onPageChange={(pageKeyword, pageString) => {
+          setPaginationKeyword(pageKeyword);
+          setPaginationString(pageString);
+        }}
       />
       {repoList && (
         <ul className="list-group list-group-flush">
@@ -78,6 +113,16 @@ function App() {
           ))}
         </ul>
       )}
+      <PageNavigation
+        start={startCursor}
+        end={endCursor}
+        previous={hasPreviousPage}
+        next={hasNextPage}
+        onPageChange={(pageKeyword, pageString) => {
+          setPaginationKeyword(pageKeyword);
+          setPaginationString(pageString);
+        }}
+      />
     </div>
   );
 }

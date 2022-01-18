@@ -1,3 +1,4 @@
+// Sandbox: https://docs.github.com/en/graphql/overview/explorer
 const githubQuery = {
   query: `
       {
@@ -26,6 +27,10 @@ const githubSearchQuery = (
       {
         viewer {
           name
+          bio
+          avatarUrl
+          login
+          url
         }
         search(query: "${searchString} user:Todd-Gardner sort:updated-desc", type: REPOSITORY, ${paginationKeyword}: ${resultCount}, ${paginationString}) {
           repositoryCount
