@@ -6,8 +6,7 @@ import SearchBox from "./components/SearchBox";
 import github from "./db";
 import { githubQuery, githubSearchQuery as searchQuery } from "./Query";
 
-// TODO: refactor
-// Add name to search to be able to search for other users
+// TODO: Add name to search to be able to search for other users
 
 function App() {
   // better to just save as user {} in one state ?
