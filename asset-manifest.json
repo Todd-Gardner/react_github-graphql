@@ -1,17 +1,17 @@
 {
   "files": {
     "main.css": "/react_github-graphql/static/css/main.0ff6ead4.css",
-    "main.js": "/react_github-graphql/static/js/main.2b46160c.js",
+    "main.js": "/react_github-graphql/static/js/main.b5abebed.js",
     "static/js/787.13deefbc.chunk.js": "/react_github-graphql/static/js/787.13deefbc.chunk.js",
     "static/media/bootstrap-icons.woff?": "/react_github-graphql/static/media/bootstrap-icons.38c4d2499557ae0379fd.woff",
     "static/media/bootstrap-icons.woff2?": "/react_github-graphql/static/media/bootstrap-icons.2b56e79ae5013246de29.woff2",
     "index.html": "/react_github-graphql/index.html",
     "main.0ff6ead4.css.map": "/react_github-graphql/static/css/main.0ff6ead4.css.map",
-    "main.2b46160c.js.map": "/react_github-graphql/static/js/main.2b46160c.js.map",
+    "main.b5abebed.js.map": "/react_github-graphql/static/js/main.b5abebed.js.map",
     "787.13deefbc.chunk.js.map": "/react_github-graphql/static/js/787.13deefbc.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.0ff6ead4.css",
-    "static/js/main.2b46160c.js"
+    "static/js/main.b5abebed.js"
   ]
 }
