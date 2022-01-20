@@ -5,6 +5,10 @@
 /.pnp
 .pnp.js
 
+# enviroment variables
+.env
+#src/db.js
+
 # testing
 /coverage
 
@@ -21,4 +25,3 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-src/db.js
