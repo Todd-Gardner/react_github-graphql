@@ -8,10 +8,17 @@
 
 - Uses Bootstrap and bootstrap-icons along with Sass and a custom scss to update global values.
 
+## Installation / Setup
+First clone the project. 
+Go to your GitHub settings and create an API token.
+Find src/dbExample.js and modify per the instructions (don't forget to rename the file to db.js).
+In project root :
+- npm init to install the dependencies.
+- npm start to run.
+
+
 
 ## Available Scripts
-First clone the project. Then type npm init to install the dependancies.
-
 In the project directory, you can run:
 
 ### `npm start`
