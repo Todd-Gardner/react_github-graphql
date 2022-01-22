@@ -1,5 +1,7 @@
 # React project that connects to the GitHub GraphQL API to retrieve and display a list of repositories.
 
+*** GitHub Token being deleted on deploy for security reasons. Need to generate another token and either use serverless functions or modify the deploy to use GH enviroment secrets ***
+
 ## Features
 - Uses GraphQL to reduce the number of calls to the API.
 - Dynamically search and sort list of repos.
